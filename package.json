@@ -1,10 +1,10 @@
 {
   "name": "serverless-appsync-offline",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Serverless AWS AppSync Offline Plugin - Allow to run AppSync locally for serverless framework",
   "main": "index.js",
   "engines": {
-    "node" : ">=8"
+    "node": ">=8"
   },
   "repository": "git@github.com:aheissenberger/serverless-appsync-offline.git",
   "author": "Andreas Heissenberger <andreas@heissenberger.at>",
