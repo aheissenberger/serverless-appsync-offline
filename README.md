@@ -57,7 +57,8 @@ All the above options can be added to serverless.yml to set default configuratio
 
 **Minimum Options:**
 ```yml
-appsync-offline:
+custom:
+  appsync-offline:
     port: 62222
     dynamodb:
       server:
@@ -65,7 +66,8 @@ appsync-offline:
 ```
 **All Options:**
 ```yml
-appsync-offline:
+custom:
+  appsync-offline:
     port: 62222
     dynamodb:
       client:
