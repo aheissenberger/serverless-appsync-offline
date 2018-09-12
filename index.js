@@ -90,7 +90,7 @@ class ServerlessAppSyncPlugin {
           self.emulator,
           self.options.dynamodb.client
         );
-        self.serverlessLog("dynamodb started: " + dynamodb.endpoint.href);
+        self.serverlessLog("dynamoDB started: " + dynamodb.endpoint.href);
         //self.serverlessLog(JSON.stringify( dynamodb))
       }
       const serverless = path.join(
@@ -99,14 +99,14 @@ class ServerlessAppSyncPlugin {
       );
       const port = self.options.port;
       const server = await createServer({ serverless, port, dynamodb });
-      self.serverlessLog("appsync started: " + server.url);
+      self.serverlessLog("AppSync started: " + server.url);
     })().then(
-      _ => self.serverlessLog(""),
+      _ => this._listenSIGINT(),
       err => self.serverlessLog("ERROR: " + err)
     );
   }
   endHandler() {
-    this.serverlessLog("AppSync offline - stopping graphql and local database");
+    this.serverlessLog("AppSync offline - stopping graphql and dynamoDB");
     this.emulator.terminate().then(() => {
       process.exit(0);
     });
@@ -149,6 +149,13 @@ class ServerlessAppSyncPlugin {
         }
       }
     );
+  }
+
+  _listenSIGINT(){
+    process.on('SIGINT', () => {
+      // _ensure_ we do not leave java processes lying around.
+      endHandler();
+    });
   }
 }
 
