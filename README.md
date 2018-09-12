@@ -4,6 +4,8 @@ serverless-appsync-offline
 [![npm version](https://badge.fury.io/js/serverless-appsync-offline.svg)](https://badge.fury.io/js/serverless-appsync-offline)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+This is a wrapper for the excelent [AppSync Emulator](https://github.com/ConduitVC/aws-utils/tree/appsync/packages/appsync-emulator-serverless). 
+
 ## This Plugin Requires
 * serverless@v1-rc.1
 * Java Runtime Engine (JRE) version 6.x or newer
@@ -13,6 +15,10 @@ serverless-appsync-offline
 * Connect to any DynamoDB or install DynamoDB Local
 * Start DynamoDB Local with all the parameters supported (e.g port, inMemory, sharedDb)
 * Table Creation for DynamoDB Local
+
+This plugin is updated by its users, I just do maintenance and ensure that PRs are relevant to the community. In other words, if you [find a bug or want a new feature](https://github.com/aheissenberger/serverless-appsync-offline/issues), please help us by becoming one of the contributors.
+
+## 
 
 ## Install Plugin
 `npm install --save serverless-appsync-offline`
@@ -31,13 +37,17 @@ plugins:
 
 
 
-## Start: sls appsync-offline start
+## Start appsync-offline
+
+`sls appsync-offline start`
+
 All CLI options are optional:
 
 ```
---port  		  -p  Port to listen on. Default: 8000
+--port  		  -p  Port to provide the graphgl api. Default: dynamic
+--dynamoDbPort            -d  Port to access the dynamoDB. Default: dynamic
 --inMemory                -i  DynamoDB; will run in memory, instead of using a database file. When you stop DynamoDB;, none of the data will be saved. Note that you cannot specify both -dbPath and -inMemory at once.
---dbPath                  -d  The directory where DynamoDB will write its database file. If you do not specify this option, the file will be written to the current directory. Note that you cannot specify both -dbPath and -inMemory at once. For the path, current working directory is <projectroot>/node_modules/serverless-appsync-offline/dynamob. For example to create <projectroot>/node_modules/serverless-appsync-offline/dynamob/<mypath> you should specify -d <mypath>/ or --dbPath <mypath>/ with a forwardslash at the end.
+--dbPath                  -b  The directory where DynamoDB will write its database file. If you do not specify this option, the file will be written to the current directory. Note that you cannot specify both -dbPath and -inMemory at once. For the path, current working directory is <projectroot>/node_modules/serverless-appsync-offline/dynamob. For example to create <projectroot>/node_modules/serverless-appsync-offline/dynamob/<mypath> you should specify -d <mypath>/ or --dbPath <mypath>/ with a forwardslash at the end.
 --sharedDb                -h  DynamoDB will use a single database file, instead of using separate files for each credential and region. If you specify -sharedDb, all DynamoDB clients will interact with the same set of tables regardless of their region and credential configuration.
 --delayTransientStatuses  -t  Causes DynamoDB to introduce delays for certain operations. DynamoDB can perform some tasks almost instantaneously, such as create/update/delete operations on tables and indexes; however, the actual DynamoDB service requires more time for these tasks. Setting this parameter helps DynamoDB simulate the behavior of the Amazon DynamoDB web service more closely. (Currently, this parameter introduces delays only for global secondary indexes that are in either CREATING or DELETING status.)
 --optimizeDbBeforeStartup -o  Optimizes the underlying database tables before starting up DynamoDB on your computer. You must also specify -dbPath when you use this parameter.

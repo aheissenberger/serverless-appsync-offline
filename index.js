@@ -101,7 +101,7 @@ class ServerlessAppSyncPlugin {
       const server = await createServer({ serverless, port, dynamodb });
       self.serverlessLog("appsync started: " + server.url);
     })().then(
-      _ => self.serverlessLog("OK"),
+      _ => self.serverlessLog(""),
       err => self.serverlessLog("ERROR: " + err)
     );
   }
