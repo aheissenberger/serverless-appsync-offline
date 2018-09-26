@@ -72,38 +72,40 @@ class ServerlessAppSyncPlugin {
     return port;
   }
 
-  startHandler() {
+  async startHandler() {
     this._setOptions();
-    var self = this;
-    (async function() {
-      let dynamodb = null;
-      if (self.options.dynamodb.client.endpoint) {
+    let dynamodb = null;
+
+    try {
+
+      if (this.options.dynamodb.client.endpoint) {
         const { DynamoDB } = require("aws-sdk");
-        console.log("options", options);
-        dynamodb = new DynamoDB(self.options.dynamodb.client);
+        dynamodb = new DynamoDB(this.options.dynamodb.client);
       } else {
         // start the dynamodb emulator
-        self.emulator = await dynamoEmulator.launch(
-          self.options.dynamodb.server
+        this.emulator = await dynamoEmulator.launch(
+          this.options.dynamodb.server
         );
         dynamodb = dynamoEmulator.getClient(
-          self.emulator,
-          self.options.dynamodb.client
+          this.emulator,
+          this.options.dynamodb.client
         );
-        self.serverlessLog("dynamoDB started: " + dynamodb.endpoint.href);
-        //self.serverlessLog(JSON.stringify( dynamodb))
+        this.serverlessLog("dynamoDB started: " + dynamodb.endpoint.href);
+        //this.serverlessLog(JSON.stringify( dynamodb))
       }
+
       const serverless = path.join(
-        self.serverless.config.servicePath,
+        this.serverless.config.servicePath,
         "serverless.yml"
       );
-      const port = self.options.port;
+      const port = this.options.port;
       const server = await createServer({ serverless, port, dynamodb });
-      self.serverlessLog("AppSync started: " + server.url);
-    })().then(
-      _ => this._listenSIGINT(),
-      err => self.serverlessLog("ERROR: " + err)
-    );
+      this.serverlessLog("AppSync started: " + server.url);
+
+      this._listenSIGINT();
+    } catch (err) {
+      this.serverlessLog("ERROR: " + err);
+    }
   }
   endHandler() {
     this.serverlessLog("AppSync offline - stopping graphql and dynamoDB");
