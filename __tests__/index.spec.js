@@ -65,7 +65,5 @@ describe('ServerlessAppSyncPlugin', () => {
         dynamodb: mocks.dynamodb,
       });
     });
-
-    xit('starts dynamodb', async () => {});
   });
 });
