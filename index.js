@@ -156,7 +156,7 @@ class ServerlessAppSyncPlugin {
   _listenSIGINT(){
     process.on('SIGINT', () => {
       // _ensure_ we do not leave java processes lying around.
-      endHandler();
+      this.endHandler();
     });
   }
 }
