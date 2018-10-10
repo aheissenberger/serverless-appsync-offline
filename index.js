@@ -1,7 +1,6 @@
 "use strict";
 const _ = require("lodash");
 const path = require("path");
-const dynamoEmulator = require("@conduitvc/dynamodb-emulator");
 const createServer = require("@conduitvc/appsync-emulator-serverless/server");
 
 class ServerlessAppSyncPlugin {
@@ -83,6 +82,7 @@ class ServerlessAppSyncPlugin {
         dynamodb = new DynamoDB(this.options.dynamodb.client);
       } else {
         // start the dynamodb emulator
+        const dynamoEmulator = require("@conduitvc/dynamodb-emulator");
         this.emulator = await dynamoEmulator.launch(
           this.options.dynamodb.server
         );
