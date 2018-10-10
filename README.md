@@ -8,7 +8,6 @@ This is a wrapper for the excelent [AppSync Emulator](https://github.com/Conduit
 
 ## This Plugin Requires
 * serverless@v1-rc.1
-* Java Runtime Engine (JRE) version 6.x or newer
 
 ## Features
 * Emulate Appsync with [AppSync Emulator](https://github.com/ConduitVC/aws-utils/tree/appsync/packages/appsync-emulator-serverless) and depends on [Serverless-AppSync-Plugin](https://github.com/sid88in/serverless-appsync-plugin)
