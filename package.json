@@ -30,6 +30,8 @@
   "dependencies": {
     "@conduitvc/appsync-emulator-serverless": "^0.7.3",
     "aws-sdk": "^2.313.0",
+    "eventemitter2": "^5.0.1",
+    "ioredis": "^4.0.2",
     "lodash": "^4.17.10"
   },
   "devDependencies": {
