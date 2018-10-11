@@ -1,6 +1,6 @@
 {
   "name": "serverless-appsync-offline",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Serverless AWS AppSync Offline Plugin - Allow to run AppSync locally for serverless framework",
   "main": "index.js",
   "engines": {
