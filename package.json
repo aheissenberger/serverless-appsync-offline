@@ -32,7 +32,8 @@
     "aws-sdk": "^2.313.0",
     "eventemitter2": "^5.0.1",
     "ioredis": "^4.0.2",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "msgpack-lite": "^0.1.26"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
