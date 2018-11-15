@@ -6,6 +6,7 @@ const createServer = require("@conduitvc/appsync-emulator-serverless/server");
 class ServerlessAppSyncPlugin {
   constructor(serverless, options) {
     this.serverless = serverless;
+    this.servicePath = serverless.config.servicePath;
     this.serverlessLog = serverless.cli.log.bind(serverless.cli);
     this.options = options;
 
@@ -95,7 +96,7 @@ class ServerlessAppSyncPlugin {
       }
 
       const serverless = path.join(
-        this.serverless.config.servicePath,
+        this.servicePath,
         "serverless.yml"
       );
       const port = this.options.port;
