@@ -100,7 +100,9 @@ class ServerlessAppSyncPlugin {
         "serverless.yml"
       );
       const port = this.options.port;
-      const server = await createServer({ serverless, port, dynamodb });
+      // from "custom.appSync.schema" for custom graphQL schema file location
+      const schemaPath = this.options.schema;
+      const server = await createServer({ serverless, schemaPath, port, dynamodb });
       this.serverlessLog("AppSync started: " + server.url);
 
       this._listenSIGINT();
