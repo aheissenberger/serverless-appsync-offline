@@ -115,10 +115,17 @@ class ServerlessAppSyncPlugin {
   }
 
   endHandler() {
-    this.serverlessLog("AppSync offline - stopping graphql and dynamoDB");
-    this.emulator.terminate().then(() => {
+    if (this.emulator) {
+      // DynamoDB only needs stopping if we actually started it. If an external
+      // connection was specified then this.emulator will be undefined.
+      this.serverlessLog("AppSync offline - stopping graphql and dynamoDB");
+      this.emulator.terminate().then(() => {
+        process.exit(0);
+      });
+    } else {
+      this.serverlessLog("AppSync offline - stopping graphql");
       process.exit(0);
-    });
+    }
   }
 
   _setOptions() {
