@@ -105,11 +105,15 @@ class ServerlessAppSyncPlugin {
       const server = await createServer({ serverless, schemaPath, port, dynamodb });
       this.serverlessLog("AppSync started: " + server.url);
 
-      this._listenSIGINT();
+      // This needs to not resolve the promise until we want to stop the server.
+      // Otherwise, serverless terminates the process for us.
+      return Promise.resolve(server).then(() => this._listenForTermination());
+
     } catch (err) {
       this.serverlessLog("ERROR: " + err);
     }
   }
+
   endHandler() {
     this.serverlessLog("AppSync offline - stopping graphql and dynamoDB");
     this.emulator.terminate().then(() => {
@@ -156,8 +160,21 @@ class ServerlessAppSyncPlugin {
     );
   }
 
-  _listenSIGINT(){
-    process.on('SIGINT', () => {
+  _listenForTermination() {
+    // SIGINT will be usually sent when user presses ctrl+c
+    const waitForSigInt = new Promise(resolve => {
+      process.on('SIGINT', () => resolve('SIGINT'));
+    });
+
+    // SIGTERM is a default termination signal in many cases,
+    // for example when "killing" a subprocess spawned in node
+    // with child_process methods
+    const waitForSigTerm = new Promise(resolve => {
+      process.on('SIGTERM', () => resolve('SIGTERM'));
+    });
+
+    return Promise.race([waitForSigInt, waitForSigTerm]).then(command => {
+      this.serverlessLog(`Got ${command} signal. Serverless Appsync Offline Halting...`);
       // _ensure_ we do not leave java processes lying around.
       this.endHandler();
     });
