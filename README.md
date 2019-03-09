@@ -84,6 +84,17 @@ custom:
         optimizeDbBeforeStartup: false,
 ```
 
+**How to Query:**
+```sh
+curl -X POST \
+  http://localhost:62222/graphql \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"query": "{ hello { world } }"
+}'
+```
+
+_**Note**: If you're using `API_KEY` as your authenticationType, then a `x-api-key` header has to be present in the request. The value of the key doesn't really matter._
 
 ## Using DynamoDB Local in your code
 You need to add the following parameters to the AWS NODE SDK dynamodb constructor
