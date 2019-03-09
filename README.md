@@ -4,7 +4,7 @@ serverless-appsync-offline
 [![npm version](https://badge.fury.io/js/serverless-appsync-offline.svg)](https://badge.fury.io/js/serverless-appsync-offline)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This is a wrapper for the excelent [AppSync Emulator](https://github.com/ConduitVC/aws-utils/tree/appsync/packages/appsync-emulator-serverless). 
+This is a wrapper for the excellent [AppSync Emulator](https://github.com/ConduitVC/aws-utils/tree/appsync/packages/appsync-emulator-serverless).
 
 ## This Plugin Requires
 * serverless@v1-rc.1
@@ -124,7 +124,7 @@ Make sure that `serverless-appsync-offline` is above `serverless-offline` so it 
 Now your local Appsync and the DynamoDB database will be automatically started before running `serverless offline`.
 
 ### Using with serverless-offline and serverless-webpack plugin
-Run `serverless offline start`. In comparison with `serverless offline`, the `start` command will fire an `init` and a `end` lifecycle hook which is needed for serverless-offline and serverless-appsync-offline to switch off both ressources. 
+Run `serverless offline start`. In comparison with `serverless offline`, the `start` command will fire an `init` and a `end` lifecycle hook which is needed for serverless-offline and serverless-appsync-offline to switch off both resources.
 
 Add plugins to your `serverless.yml` file:
 ```yaml
