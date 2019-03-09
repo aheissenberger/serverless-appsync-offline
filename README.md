@@ -132,6 +132,10 @@ plugins:
   - serverless-webpack
   - serverless-appsync-offline
   - serverless-offline #serverless-offline needs to be last in the list
+
+custom:
+  appsync-emulator:
+    buildPrefix: .webpack/service # this is the default output directory for serverless-webpack
 ```
 ## Notes
 
