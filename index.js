@@ -60,7 +60,7 @@ class ServerlessAppSyncPlugin {
     };
 
     this.hooks = {
-      "appsync-offline:start:startHandler": this.startHandler.bind(this),
+      "appsync-offline:start:startHandler": this.startStandaloneHandler.bind(this),
       "before:offline:start:init": this.startHandler.bind(this),
       "before:offline:start:end": this.endHandler.bind(this)
     };
@@ -72,7 +72,7 @@ class ServerlessAppSyncPlugin {
     return port;
   }
 
-  async startHandler() {
+  async startHandler(isStandalone=false) {
     this._setOptions();
     let dynamodb = null;
 
@@ -100,14 +100,17 @@ class ServerlessAppSyncPlugin {
       const schemaPath = this.options.schema;
       const server = await createServer({ serverless: this.serverless, schemaPath, port, dynamodb });
       this.serverlessLog("AppSync started: " + server.url);
-
-      // This needs to not resolve the promise until we want to stop the server.
-      // Otherwise, serverless terminates the process for us.
-      return Promise.resolve(server).then(() => this._listenForTermination());
+      if (!isStandalone) this._listenForTermination()
+      return server
 
     } catch (err) {
       this.serverlessLog("ERROR: " + err);
     }
+  }
+
+  async startStandaloneHandler() {
+    this.serverlessLog("AppSync Standalone");
+    return Promise.resolve(this.startHandler(true)).then(() => this._listenForTermination());
   }
 
   endHandler() {

@@ -8,20 +8,23 @@ jest.mock('@conduitvc/appsync-emulator-serverless/server');
 
 describe('ServerlessAppSyncPlugin', () => {
   let mocks,
+  config,
     appSyncPlugin;
 
   beforeEach(async () => {
-    mocks = {
-      serverless: {
-        config: {
-          servicePath: 'mock-service-path',
-        },
-        cli: {
-          log: () => console.log,
-        },
+    config = {
+      config: {
+        servicePath: 'mock-service-path',
       },
+      cli: {
+        log: () => console.log,
+      },
+    }
+    mocks = {
+      serverless: config,
       options: {
         port: 1234,
+        schemaPath: undefined,
         dynamodb: {
           client: {
             endpoint: 'mock-dynamodb-endpoint',
@@ -60,7 +63,7 @@ describe('ServerlessAppSyncPlugin', () => {
       await appSyncPlugin.startHandler();
 
       expect(mocks.createServer).toBeCalledWith({
-        serverless: `${mocks.serverless.config.servicePath}/serverless.yml`,
+        serverless: config,
         port: mocks.options.port,
         dynamodb: mocks.dynamodb,
       });
