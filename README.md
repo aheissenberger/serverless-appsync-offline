@@ -135,7 +135,9 @@ plugins:
 
 custom:
   appsync-emulator:
-    buildPrefix: .webpack/service # this is the default output directory for serverless-webpack
+    # when using serverless-webpack it (by default) outputs all the build assets to `<projectRoot>/.webpack/service`
+    # this will let appsync-offline know where to find those compiled files
+    buildPrefix: .webpack/service
 ```
 ## Notes
 
