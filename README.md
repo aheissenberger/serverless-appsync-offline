@@ -134,6 +134,15 @@ Make sure that `serverless-appsync-offline` is above `serverless-offline` so it 
 
 Now your local Appsync and the DynamoDB database will be automatically started before running `serverless offline`.
 
+### Debugging
+
+`SLS_DEBUG=* NODE_DEBUG=appsync-* yarn offline`
+
+or
+
+`SLS_DEBUG=* NODE_DEBUG=appsync-* yarn sls appsync-offline start`
+
+
 ### Using with serverless-offline and serverless-webpack plugin
 Run `serverless offline start`. In comparison with `serverless offline`, the `start` command will fire an `init` and a `end` lifecycle hook which is needed for serverless-offline and serverless-appsync-offline to switch off both resources.
 
@@ -144,6 +153,7 @@ plugins:
   - serverless-appsync-offline
   - serverless-offline #serverless-offline needs to be last in the list
 ```
+
 ## Notes
 
 The [AppSync Emulator](https://github.com/ConduitVC/aws-utils/tree/appsync/packages/appsync-emulator-serverless) does not support CloudFormation syntax (e.g. `tableName: { Ref: UsersTable }`) in `dataSources`. 
