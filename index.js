@@ -95,14 +95,10 @@ class ServerlessAppSyncPlugin {
         //this.serverlessLog(JSON.stringify( dynamodb))
       }
 
-      const serverless = path.join(
-        this.servicePath,
-        "serverless.yml"
-      );
       const port = this.options.port;
       // from "custom.appSync.schema" for custom graphQL schema file location
       const schemaPath = this.options.schema;
-      const server = await createServer({ serverless, schemaPath, port, dynamodb });
+      const server = await createServer({ serverless: this.serverless, schemaPath, port, dynamodb });
       this.serverlessLog("AppSync started: " + server.url);
 
       // This needs to not resolve the promise until we want to stop the server.
