@@ -152,6 +152,12 @@ plugins:
   - serverless-webpack
   - serverless-appsync-offline
   - serverless-offline #serverless-offline needs to be last in the list
+
+custom:
+  appsync-emulator:
+    # when using serverless-webpack it (by default) outputs all the build assets to `<projectRoot>/.webpack/service`
+    # this will let appsync-offline know where to find those compiled files
+    buildPrefix: .webpack/service
 ```
 
 ## Notes
