@@ -60,4 +60,10 @@ typings/
 # next.js build output
 .next
 
+# VS Code settings
 *.code-workspace
+
+# yarn/npm lock files
+yarn.lock
+package-lock.json
+npm-shrinkwrap.json
