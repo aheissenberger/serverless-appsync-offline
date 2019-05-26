@@ -89,6 +89,7 @@ custom:
 curl -X POST \
   http://localhost:62222/graphql \
   -H 'Content-Type: application/json' \
+  -H 'x-api-key: APIKEY' \
   -d '{
 	"query": "{ hello { world } }"
 }'
