@@ -1,6 +1,6 @@
 {
   "name": "serverless-appsync-offline",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "description": "Serverless AWS AppSync Offline Plugin - Allow to run AppSync locally for serverless framework",
   "main": "index.js",
   "engines": {
@@ -28,7 +28,7 @@
     "test": "jest --no-cache"
   },
   "dependencies": {
-    "@conduitvc/appsync-emulator-serverless": "^0.12.7",
+    "@conduitvc/appsync-emulator-serverless": "^0.14.0",
     "aws-sdk": "^2.463.0",
     "lodash": "^4.17.11"
   },
