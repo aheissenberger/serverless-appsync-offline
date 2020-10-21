@@ -30,7 +30,8 @@
   "dependencies": {
     "@conduitvc/appsync-emulator-serverless": "^0.14.5",
     "aws-sdk": "^2.559.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "jsonschema": "1.2.6"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
