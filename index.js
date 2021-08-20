@@ -21,37 +21,44 @@ class ServerlessAppSyncPlugin {
               port: {
                 shortcut: "p",
                 usage:
-                  "The port number that appsync will use to provide the graphql access point. If you do not specify this option, the default port is dynamic"
+                  "The port number that appsync will use to provide the graphql access point. If you do not specify this option, the default port is dynamic",
+                type: "string"
               },
               dynamoDbPort: {
                 shortcut: "d",
                 usage:
-                  "The port number that DynamoDB will use to communicate with your application. If you do not specify this option, the default port is dynamic"
+                  "The port number that DynamoDB will use to communicate with your application. If you do not specify this option, the default port is dynamic",
+                type: "string"
               },
               inMemory: {
                 shortcut: "i",
                 usage:
-                  "DynamoDB; will run in memory, instead of using a database file. When you stop DynamoDB;, none of the data will be saved. Note that you cannot specify both -dbPath and -inMemory at once."
+                  "DynamoDB; will run in memory, instead of using a database file. When you stop DynamoDB;, none of the data will be saved. Note that you cannot specify both -dbPath and -inMemory at once.",
+                type: "boolean"
               },
               dbPath: {
                 shortcut: "b",
                 usage:
-                  "The directory where DynamoDB will write its database file. If you do not specify this option, the file will be written to the current directory. Note that you cannot specify both -dbPath and -inMemory at once. For the path, current working directory is <projectroot>/node_modules/serverless-dynamodb-local/dynamob. For example to create <projectroot>/node_modules/serverless-dynamodb-local/dynamob/<mypath> you should specify -d <mypath>/ or --dbPath <mypath>/ with a forwardslash at the end."
+                  "The directory where DynamoDB will write its database file. If you do not specify this option, the file will be written to the current directory. Note that you cannot specify both -dbPath and -inMemory at once. For the path, current working directory is <projectroot>/node_modules/serverless-dynamodb-local/dynamob. For example to create <projectroot>/node_modules/serverless-dynamodb-local/dynamob/<mypath> you should specify -d <mypath>/ or --dbPath <mypath>/ with a forwardslash at the end.",
+                type: "string"
               },
               sharedDb: {
                 shortcut: "h",
                 usage:
-                  "DynamoDB will use a single database file, instead of using separate files for each credential and region. If you specify -sharedDb, all DynamoDB clients will interact with the same set of tables regardless of their region and credential configuration."
+                  "DynamoDB will use a single database file, instead of using separate files for each credential and region. If you specify -sharedDb, all DynamoDB clients will interact with the same set of tables regardless of their region and credential configuration.",
+                type: "string"
               },
               delayTransientStatuses: {
                 shortcut: "t",
                 usage:
-                  "Causes DynamoDB to introduce delays for certain operations. DynamoDB can perform some tasks almost instantaneously, such as create/update/delete operations on tables and indexes; however, the actual DynamoDB service requires more time for these tasks. Setting this parameter helps DynamoDB simulate the behavior of the Amazon DynamoDB web service more closely. (Currently, this parameter introduces delays only for global secondary indexes that are in either CREATING or DELETING status."
+                  "Causes DynamoDB to introduce delays for certain operations. DynamoDB can perform some tasks almost instantaneously, such as create/update/delete operations on tables and indexes; however, the actual DynamoDB service requires more time for these tasks. Setting this parameter helps DynamoDB simulate the behavior of the Amazon DynamoDB web service more closely. (Currently, this parameter introduces delays only for global secondary indexes that are in either CREATING or DELETING status.",
+                type: "string"
               },
               optimizeDbBeforeStartup: {
                 shortcut: "o",
                 usage:
-                  "Optimizes the underlying database tables before starting up DynamoDB on your computer. You must also specify -dbPath when you use this parameter."
+                  "Optimizes the underlying database tables before starting up DynamoDB on your computer. You must also specify -dbPath when you use this parameter.",
+                type: "string"
               }
             }
           }
