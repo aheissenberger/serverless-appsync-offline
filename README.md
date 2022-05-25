@@ -6,6 +6,10 @@ serverless-appsync-offline
 
 This is a wrapper for the excellent [AppSync Emulator](https://github.com/ConduitVC/aws-utils/tree/appsync/packages/appsync-emulator-serverless).
 
+**Attention**
+> Since the libraries from Conduit `@conduitvc/appsync-emulator-serverless` are no longer maintained this library cannot be maintained too.
+> Please switch to [serverless-appsync-simulator](https://github.com/serverless-appsync/serverless-appsync-simulator) which wraps the offical AWS AppSync [amplify-appsync-simulator](https://github.com/aws-amplify/amplify-cli/tree/master/packages/amplify-appsync-simulator).
+
 ## This Plugin Requires
 * serverless@v1-rc.1
 
